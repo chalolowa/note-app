@@ -2,7 +2,7 @@
 import { revalidatePath } from 'next/cache'
 import db from './db'
 
-export const completeTodo = async (id) => {
+export const completeTodo = async (id: any) => {
     await db.todo.update({
         where: {id},
         data: {
@@ -13,7 +13,7 @@ export const completeTodo = async (id) => {
     revalidatePath('/todos')
 }
 
-export const newTodo = async (formData) => {
+export const newTodo = async (formData: { get: (arg0: string) => any }) => {
     const todo = await db.todo.create({
         data: {
             content: formData.get('content'),
